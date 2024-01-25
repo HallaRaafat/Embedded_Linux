@@ -11,7 +11,7 @@
 
       to compile all the source files and remove main.o 
 
-   ![](README.assets/Screenshot from 2024-01-25 22-22-06.png)
+   
 
    2. Archive all .o to create library 
 
@@ -19,7 +19,7 @@
       ar rcs liboperation.a *.o
       ```
 
-      ![](README.assets/Screenshot from 2024-01-25 22-34-29.png)
+      ![](README.assets/aa.png)
 
       in naming the library must start with lib(name).a for static libraries 
 
@@ -37,11 +37,11 @@
 
       to link main.c with operation library and name the output file "staticlink" 
 
-      ![](README.assets/Screenshot from 2024-01-25 22-42-23.png)
+      
 
 2. ## Dynamic Libraries 
 
-1. create object files 
+   1. create object files 
 
    
 
@@ -56,6 +56,33 @@
    - `-I/path/to/header/files`: This flag tells `gcc` where to look for header files. You can specify multiple `-I` flags if your header files are located in multiple directories.
    - `*.c`: This specifies all the C source files (`*.c`) in the current directory as input to the `gcc` command.
 
-2. 
+   ![](README.assets/d1.png)
 
-   
+2. create shared library 
+
+   ```
+   gcc -shared -o liboperation.so *.o
+   ```
+
+   ![](README.assets/d2.png)
+
+3. add path of library to LD_LIBRARY_PATH 
+
+   ```
+   pwd
+   ```
+
+   to get library path and copy it 
+
+   ```
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/copied/path
+   ```
+
+4.link library with the main source file 
+
+```
+gcc main.c -o dynamiclink -L./source/ -loperation -I./headers/
+./dynamiclink
+```
+
+![](README.assets/finaldyn.png)
